@@ -7,9 +7,17 @@ import java.io.*;
 public class ControlJson {
 	private String ruta="libreria.json";
 
+	public ControlJson(String ruta){
+		this.ruta=ruta;
+	}
 	public ControlJson(){
 
 	}
+
+	/**
+	 * Agrega al final del Array Json el objeto libro
+	 * @param libro
+	 */
 	public void agregarObjeto(Libro libro) {
 		String texto=leerArchivo();
 		String target="]}";
@@ -17,6 +25,11 @@ public class ControlJson {
 		this.escribirTexto(texto);
 	}
 
+	/**
+	 * Caso especial cuando se agrega el primer libro del Array.
+	 * Noagrega la coma de separacion al comienzo del objeto ya que no hay objetos anteriores.
+	 * @param libro
+	 */
 	public void agregarPrimero(Libro libro) {
 		String texto=leerArchivo();
 		String target="]}";
@@ -24,6 +37,10 @@ public class ControlJson {
 		this.escribirTexto(texto);
 	}
 
+	/**
+	 * Quita del Array Json el elemento en la posicion indice
+	 * @param indice
+	 */
 	public void eliminarObjeto(int indice){
 		String texto=leerArchivo();
 		String target = "\\{"+separarObjetos()[indice]+"},?";
@@ -31,6 +48,10 @@ public class ControlJson {
 		escribirTexto(texto);
 	}
 
+	/**
+	 * Caso especial cuando se elimina el ultimo Objeto cuando quedan 2 en total.
+	 * Debe quitarse la coma de separacion ya que solo quedara un objeto en el Array
+	 */
 	public void eliminarUltimo() {
 		String texto=leerArchivo();
 		String target = "\\{"+separarObjetos()[1]+"}]}";
@@ -40,7 +61,11 @@ public class ControlJson {
 		escribirTexto(texto);
 	}
 
-	private String leerArchivo() {
+	/**
+	 * Guarda el contenido del archivo en una variable String
+	 * @return String con el texto.
+	 */
+	String leerArchivo() {
 
 		String texto="";
 		try {
@@ -51,6 +76,11 @@ public class ControlJson {
 		}
 		return texto;
 	}
+
+	/**
+	 * Condicion inicial del programa
+	 * Garantiza la existencia de un archivo con un array vacio al inicio del programa.
+	 */
 	public void crearArchivo(){
 		File file = new File(ruta);
 		try {
@@ -68,6 +98,7 @@ public class ControlJson {
 		}
 	}
 
+
 	private String intentarleer_Archivo() throws IOException {
 
 
@@ -83,7 +114,11 @@ public class ControlJson {
 		return texto.toString();
 	}
 
-	private void escribirTexto(String mensaje) {
+	/**
+	 * Escribe el contenido de mensaje en una nueva linea del archivo
+	 * @param mensaje
+	 */
+	void escribirTexto(String mensaje) {
 		try {
 			intentarEscribir(mensaje);
 		} catch (Exception e) {
@@ -100,6 +135,10 @@ public class ControlJson {
 		fichero.close();
 	}
 
+	/**
+	 * Separa los objetos del Array Json en un Arreglo de String
+	 * @return Arreglo de String con los obbjetos del Json
+	 */
 	private String[] separarObjetos() {
 		String texto=separarArray();
 		String[] parte = texto.split("[{}]");

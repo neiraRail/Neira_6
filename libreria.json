@@ -1,1 +1,7 @@
-{"libros": []}
+{"libros": [{"Titulo":"Mercado","Autor":"Ariel Montecinos","Precio":"5000","Codigo":"0"},
+{"Titulo":"El Hacendado","Autor":"Maria Trujillo","Precio":"5000","Codigo":"1"},
+{"Titulo":"Atlas De Anatomia","Autor":"Jose Pereira","Precio":"10000","Codigo":"2"},
+  {"Titulo": "TituloTest","Autor": "AutorTest","Precio": "1000","Codigo": "3"}]}
+
+
+

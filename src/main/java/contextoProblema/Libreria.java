@@ -13,6 +13,10 @@ public class Libreria {
 	public Libreria(){
 	}
 
+	/**
+	 * Agrega al stock el objeto libro con los datos especificados
+	 * Los datos son ingresados por el usuario.
+	 */
 	public void agregarLibro() {
 		ControlJson ctrl = new ControlJson();
 		String titulo= recibirTitulo();
@@ -32,6 +36,9 @@ public class Libreria {
 		librosTotal++;
 	}
 
+	/**
+	 * Despliega por pantalla el listado de libros en stock
+	 */
 	public void mostrarListado() {
 		if(stock.size()==0){
 			System.out.println("No hay Libros!");
@@ -44,6 +51,9 @@ public class Libreria {
 		}
 	}
 
+	/**
+	 * Quita del stock el libro que el usuario seleccione
+	 */
 	public void venderLibro() {
 		if (stock.size()==0){
 			System.out.println("No hay libros!");
@@ -65,23 +75,40 @@ public class Libreria {
 		}
 	}
 
+	/**
+	 * Recibe y valida un titulo con 1 o mas palabras que comienzan con mayuscula
+	 * @return String con el titulo del libro que el usuario especifique
+	 */
 	private String recibirTitulo(){
 		System.out.println("Titulo");
 		//Una o dos palabras con Mayusculas
 		return recibir("^[A-Z][a-z]+(\\s[A-Z][a-z]+)*?$");
 	}
 
+	/**
+	 * REcibe y valida un nombre de dos palabras que comienzen con mayuscula
+	 * @return String con el nombre del autor que el usuario especifique
+	 */
 	private String recibirAutor(){
 		System.out.println("Nombre y apellido del Autor");
 		return recibir("^[A-Z][a-z]+\\s[A-Z][a-z]+$");
 	}
 
+	/**
+	 * REcibe y valida un numero de entre 4 y 6 digitos
+	 * @return	int con el precio que el usuario especifique.
+	 */
 	private int recibirPrecio(){
 		System.out.println("Precio");
 		return Integer.parseInt(recibir("^[0-9]{4,6}$"));
 
 	}
 
+	/**
+	 * recibe y valida segun regex
+	 * @param regex expresion regular para validar
+	 * @return	String validado por expresion regular
+	 */
 	private String recibir(String regex){
 		String valor;
 		Scanner scan = new Scanner(System.in);
